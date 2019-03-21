@@ -1,78 +1,7 @@
 import React, { Component } from "react";
-
-class Slider extends Component {
-  render() {
-    return (
-      <label className="slider" htmlFor={this.props.name}>
-        {this.props.name}:
-        <input
-          defaultValue={this.props.default}
-          onMouseDown={this.props.handlers[0]}
-          onMouseMove={this.props.handlers[1]}
-          onMouseUp={this.props.handlers[2]}
-          id={this.props.id}
-          name={this.props.name}
-          type="range"
-          min="0"
-          max={this.props.max || 100}
-          step="1"
-        />
-      </label>
-    );
-  }
-}
-
-class SliderGroup extends Component {
-  render() {
-    return (
-      <div id="sliders">
-        <Slider
-          default={this.props.hue}
-          handlers={this.props.handlers}
-          name="Hue"
-          id="hue"
-          max="360"
-        />
-        <Slider
-          default={this.props.sat}
-          handlers={this.props.handlers}
-          name="Saturation"
-          id="sat"
-        />
-        <Slider
-          default={this.props.light}
-          handlers={this.props.handlers}
-          name="Lightness"
-          id="light"
-        />
-      </div>
-    );
-  }
-}
-
-class Btn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: this.props.id,
-      content: this.props.content
-    };
-  }
-  componentWillReceiveProps(props) {
-    this.setState({ ...props });
-  }
-  render() {
-    return (
-      <div
-        id={this.state.id}
-        className="btn"
-        onClick={this.state.id === "lock" ? this.props.onClick : ""}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
+import GradientContainer from "../gradients/container"
+import Btn from "../btn"
+import SliderGroup from "../sliders"
 
 class ColorBlock extends Component {
   constructor(props) {
@@ -90,6 +19,7 @@ class ColorBlock extends Component {
     this.handle_mouseup = this.handle_mouseup.bind(this);
     this.handle_lock = this.handle_lock.bind(this);
     this.set_color = this.set_color.bind(this);
+    this.show_gradient = this.show_gradient.bind(this);
   }
   create_HSL() {
     return `hsl( ${this.state.hue}, ${this.state.sat}%, ${this.state.light}% )`;
@@ -173,7 +103,7 @@ class ColorBlock extends Component {
     e.nativeEvent.stopImmediatePropagation();
     if (this.state.mutable) {
       this.setState({
-        [e.target.id]: e.target.value,
+        [e.target.id]: parseFloat(e.target.value),
         color: this.set_color()
       });
     }
@@ -191,6 +121,10 @@ class ColorBlock extends Component {
     this.setState({
       locked: !this.state.locked
     });
+    return false;
+  }
+  show_gradient(){
+    document.getElementById(this.state.id).querySelector('.gradient_container').classList.toggle('open')
   }
   render() {
     return (
@@ -199,6 +133,7 @@ class ColorBlock extends Component {
         className="color_block"
         style={{ background: this.create_HSL(), color: this.set_color() }}
       >
+      <GradientContainer state={this.state} />
         <div className="cb_head">
           <p className="color_title">{this.create_HSL()}</p>
           <p className="color_title">{this.create_RGB()}</p>
@@ -225,7 +160,7 @@ class ColorBlock extends Component {
                 </span>
               )}
             </Btn>
-            <Btn id="convert">Convert</Btn>
+            <Btn id="convert" onClick={this.show_gradient}>Gradient</Btn>
           </div>
         </div>
       </div>
@@ -233,66 +168,5 @@ class ColorBlock extends Component {
   }
 }
 
-class ColorBlocks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color1: {},
-      color2: {},
-      color3: {},
-      color4: {}
-    };
 
-    this.handle_click = this.handle_click.bind(this);
-    this.create_color = this.create_color.bind(this);
-  }
-  gen_random(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  cap_hue(hue) {
-    while (hue > 360) {
-      hue -= 360;
-    }
-    while (hue < 0) {
-      hue += 360;
-    }
-    return hue;
-  }
-  create_color() {
-    const hue = this.gen_random(0, 361);
-    const sat = this.gen_random(20, 101);
-    const light = this.gen_random(20, 80);
-
-    this.setState({
-      color1: { hue: this.cap_hue(hue - 45), sat: sat, light: light },
-      color2: { hue: this.cap_hue(hue - 15), sat: sat, light: light },
-      color3: { hue: this.cap_hue(hue + 15), sat: sat, light: light },
-      color4: { hue: this.cap_hue(hue + 45), sat: sat, light: light }
-    });
-  }
-  handle_click(e) {
-    if (Array.from(document.querySelectorAll(".color_block")).includes(e.target) 
-    // &&
-      // e.target.type !== "range" &&
-      // !Array.from(document.querySelectorAll(".controls")).includes(e.target)
-    ) {
-      this.create_color();
-    }
-  }
-  componentDidMount() {
-    return this.create_color();
-  }
-  render() {
-    return (
-      <div className="container" onClick={this.handle_click}>
-        <ColorBlock id="cb1" style={this.state.color1} />
-        <ColorBlock id="cb2" style={this.state.color2} />
-        <ColorBlock id="cb3" style={this.state.color3} />
-        <ColorBlock id="cb4" style={this.state.color4} />
-      </div>
-    );
-  }
-}
-
-export default ColorBlocks;
+export default ColorBlock;
