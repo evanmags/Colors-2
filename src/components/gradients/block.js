@@ -11,6 +11,7 @@ class GradBlock extends Component{
     this.bgc = this.bgc.bind(this)
     this.clamp = this.clamp.bind(this)
     this.cap_hue = this.cap_hue.bind(this)
+    this.text_color = this.text_color.bind(this)
   }
   componentWillReceiveProps(props) {
     this.setState({ 
@@ -35,9 +36,13 @@ class GradBlock extends Component{
   bgc(){
     return`hsl( ${this.state.hue}, ${this.state.sat}%, ${this.state.light}% )`
   };
+  text_color(){
+    return this.state.light > 50 ? '#333' : '#f8f8f8';
+  }
   render(){
     return(
-      <div className="gradient_block" style={{background: this.bgc()}}>{this.state.h ? `H: ${this.state.hue}deg` : this.state.s ? `S: ${this.state.sat}%` : `L: ${this.state.light}%`}</div>
+      <div className="gradient_block" style={{background: this.bgc(), color: this.text_color()}}>{this.state.h ? `H: ${this.state.hue}deg` : this.state.s ? `S: ${this.state.sat}%` : `L: ${this.state.light}%`}
+      </div>
     )
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import '../App.css';
 
 function NavBtn(props){
   return(
@@ -16,7 +15,7 @@ const NavBtnGroup =(
       </div>
     )
 
-const NavBrand = ( <div className="nav_brand">Colors <i class="fas fa-swatchbook"></i></div> )
+const NavBrand = ( <div className="nav_brand">Colors <i className="fas fa-swatchbook"></i></div> )
 
 class Navbar extends Component {
   render(){

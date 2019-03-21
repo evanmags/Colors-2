@@ -83,7 +83,7 @@ class ColorBlock extends Component {
     return "#" + r + g + b;
   }
   set_color() {
-    return this.state.light < 50 ? "#f8f8f8" : "#333";
+    return this.state.light < 50 ? "#f8f8f8" : "#333" ;
   }
   componentWillReceiveProps(props) {
     if (!this.state.locked) {
@@ -160,7 +160,7 @@ class ColorBlock extends Component {
                 </span>
               )}
             </Btn>
-            <Btn id="convert" onClick={this.show_gradient}>Gradient</Btn>
+            <Btn id="convert" onClick={this.show_gradient}>Gradients</Btn>
           </div>
         </div>
       </div>
