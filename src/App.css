@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 }
 
 .navbar{
@@ -15,6 +22,10 @@
   align-items: center;
   background: #f8f8f8;
   box-shadow: 0 1px 3px;
+}
+
+.nav_brand{
+  font-size: 18px;
 }
 
 .btn_group{
@@ -31,7 +42,7 @@
 }
 
 .nav_btn:hover{
-  background: #333;
+  background: #3338;
   color: #eee;
 }
 
@@ -40,6 +51,7 @@
   width: 100vw;
   padding-top: 45px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   overflow: hidden;
 }
@@ -49,12 +61,13 @@
   padding: 20px;
   transition: all .3s;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
 .color_block:hover{
+  flex: 1 1 40vw;
   z-index: 100;
   box-shadow: 0 5px 20px #333;
 }
@@ -68,10 +81,25 @@
 
 .color_title{
   margin: 5px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(-20px) scaleY(0);
+  transition: transform .3s ease, opacity .3s linear, font-size .3s ease;
+}
+
+.color_title:first-of-type{
+  transform: translateY(0px) scaleY(1);
+  opacity: 1;
+}
+
+.color_block:hover .color_title{
+  font-size: 14px;
+  transform: translateY(0px) scaleY(1);
+  opacity: 1;
 }
 
 .controls{
-  width: 100%;
+  width: 60%;
   height: 30%;
   display: flex;
   flex-direction: column;
@@ -79,7 +107,7 @@
   justify-content: space-around;
   transform: translateY(300px);
   opacity: 0;
-  transition: transform .3s cubic-bezier(.29,.04,.53,1.46), opacity .3s linear;
+  transition: transform .3s ease, opacity .3s linear;
 }
 
 .color_block:hover .controls{
@@ -95,16 +123,49 @@
   flex-wrap: wrap;
 }
 
+.slider input{
+  cursor: pointer;
+}
+
 .btn_row{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .btn {
   display: inline-block;
   border: 1px solid;
   align-self: center;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   word-wrap: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 900px){
+  .color_title:first-of-type{
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 820px){
+  .btn {
+    padding: 10px;
+  }
+}
+
+@media only screen and (min-width: 800px){
+  .container{
+    flex-direction: row;
+  }
+
+  .color_block{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls{
+    width: 100%;
+  }
 }

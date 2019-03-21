@@ -164,11 +164,13 @@ class ColorBlock extends Component {
     this.setState({ color: this.set_color() });
   }
   handle_mousedown(e) {
+    e.nativeEvent.stopImmediatePropagation();
     this.setState({
       mutable: true
     });
   }
   handle_mousemove(e) {
+    e.nativeEvent.stopImmediatePropagation();
     if (this.state.mutable) {
       this.setState({
         [e.target.id]: e.target.value,
@@ -177,6 +179,7 @@ class ColorBlock extends Component {
     }
   }
   handle_mouseup(e) {
+    e.nativeEvent.stopImmediatePropagation();
     this.setState({
       mutable: false
     });
@@ -262,16 +265,17 @@ class ColorBlocks extends Component {
     const light = this.gen_random(20, 80);
 
     this.setState({
-      color1: { hue: this.cap_hue(hue - 30), sat: sat, light: light },
-      color2: { hue: this.cap_hue(hue), sat: sat, light: light },
-      color3: { hue: this.cap_hue(hue + 30), sat: sat, light: light },
-      color4: { hue: this.cap_hue(hue + 60), sat: sat, light: light }
+      color1: { hue: this.cap_hue(hue - 45), sat: sat, light: light },
+      color2: { hue: this.cap_hue(hue - 15), sat: sat, light: light },
+      color3: { hue: this.cap_hue(hue + 15), sat: sat, light: light },
+      color4: { hue: this.cap_hue(hue + 45), sat: sat, light: light }
     });
   }
   handle_click(e) {
-    if (
-      !Array.from(document.querySelectorAll(".controls")).includes(e.target) &&
-      e.target.type !== "range"
+    if (Array.from(document.querySelectorAll(".color_block")).includes(e.target) 
+    // &&
+      // e.target.type !== "range" &&
+      // !Array.from(document.querySelectorAll(".controls")).includes(e.target)
     ) {
       this.create_color();
     }
