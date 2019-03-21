@@ -1,33 +1,110 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.navbar{
+  position: fixed;
+  z-index: 1000000;
+  width: 100vw;
+  height: 45px;
+  padding: 0 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f8f8;
+  box-shadow: 0 1px 3px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn_group{
+  display: flex;
+  align-self: stretch;
+}
+
+.nav_btn{
+  width: 100px;
+  transition: all .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_btn:hover{
+  background: #333;
+  color: #eee;
+}
+
+.container{
+  height: 100vh;
+  width: 100vw;
+  padding-top: 45px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.color_block{
+  flex: 1 1 30vw;
+  padding: 20px;
+  transition: all .3s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.color_block:hover{
+  z-index: 100;
+  box-shadow: 0 5px 20px #333;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cb_head{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.color_title{
+  margin: 5px;
+}
+
+.controls{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+  transform: translateY(300px);
+  opacity: 0;
+  transition: transform .3s cubic-bezier(.29,.04,.53,1.46), opacity .3s linear;
+}
+
+.color_block:hover .controls{
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.slider{
+  padding: 5px 15px; 
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.btn_row{
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid;
+  align-self: center;
+  padding: 10px;
+  border-radius: 5px;
+  word-wrap: none;
 }
