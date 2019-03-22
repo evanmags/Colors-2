@@ -7,11 +7,19 @@ class GradientContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
-      ...props.state
+      onClick: props.onClick,
+      hue: props.state.hue,
+      sat: props.state.sat,
+      light: props.state.light 
     }
   }
   componentWillReceiveProps(props) {
-    this.setState({ ...props.state });
+    this.setState({ 
+      onClick: props.onClick,
+      hue: props.state.hue,
+      sat: props.state.sat,
+      light: props.state.light 
+    });
   }
   render(){
     return(

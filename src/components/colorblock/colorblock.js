@@ -20,6 +20,7 @@ class ColorBlock extends Component {
     this.handle_lock = this.handle_lock.bind(this);
     this.set_color = this.set_color.bind(this);
     this.show_gradient = this.show_gradient.bind(this);
+    this.handle_gradient_click = this.handle_gradient_click.bind(this);
   }
   create_HSL() {
     return `hsl( ${this.state.hue}, ${this.state.sat}%, ${this.state.light}% )`;
@@ -126,6 +127,48 @@ class ColorBlock extends Component {
   show_gradient(){
     document.getElementById(this.state.id).querySelector('.gradient_container').classList.toggle('open')
   }
+  handle_gradient_click(e){
+    let color = e.target.style.background;
+    let [r, g, b] = color.split(' ')
+                         .map(c => {
+                           return parseInt(c.replace(/rgb\(|,|\)/g, ''))
+                          })
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    let cmin = Math.min(r,g,b),
+        cmax = Math.max(r,g,b),
+        delta = cmax - cmin,
+        h = 0, s = 0, l = 0;
+
+    if (delta === 0)
+      h = 0;
+    else if (cmax === r)
+      h = ((g - b) / delta) % 6;
+    else if (cmax === g)
+      h = (b - r) / delta + 2;
+    else
+      h = (r - g) / delta + 4;
+  
+    h = Math.round(h * 60);
+
+    if (h < 0)
+        h += 360;
+    
+    l = (cmax + cmin) / 2;
+
+    s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+      
+    s = +(s * 100).toFixed(0);
+    l = +(l * 100).toFixed(0);
+
+    this.setState({
+      hue: h,
+      sat: s,
+      light: l
+    })
+  }
   render() {
     return (
       <div
@@ -133,7 +176,7 @@ class ColorBlock extends Component {
         className="color_block"
         style={{ background: this.create_HSL(), color: this.set_color() }}
       >
-      <GradientContainer state={this.state} />
+      <GradientContainer state={this.state} onClick={this.handle_gradient_click}/>
         <div className="cb_head">
           <p className="color_title">{this.create_HSL()}</p>
           <p className="color_title">{this.create_RGB()}</p>
