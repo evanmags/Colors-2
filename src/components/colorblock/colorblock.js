@@ -73,13 +73,9 @@ class ColorBlock extends Component {
   }
   create_HEX() {
     let hsl = this.hsl_to_255(),
-      r = hsl.r.toString(16),
-      g = hsl.g.toString(16),
-      b = hsl.b.toString(16);
-
-    if (r.length === 1) r = "0" + r;
-    if (g.length === 1) g = "0" + g;
-    if (b.length === 1) b = "0" + b;
+      r = hsl.r.toString(16).padStart(2, '0'),
+      g = hsl.g.toString(16).padStart(2, '0'),
+      b = hsl.b.toString(16).padStart(2, '0');
 
     return "#" + r + g + b;
   }
