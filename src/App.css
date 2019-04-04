@@ -1,24 +1,30 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400|Poiret+One');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400|Poiret+One");
 
-*{
+/* general styles */
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
-  font-family: 'Montserrat', sans-serif;
+body {
+  font-family: "Montserrat", sans-serif;
   font-size: 14px;
   overflow: hidden;
 }
 
-#root, .App, .color_block{
+#root,
+.App,
+.colorBlock {
   overflow: hidden;
 }
 
-.navbar{
+/* Navbar styles */
+
+.navbar {
   position: fixed;
-  z-index: 1000000;
+  z-index: 100;
   width: 100vw;
   height: 45px;
   padding: 0 5vw;
@@ -29,33 +35,41 @@ body{
   box-shadow: 0 1px 3px;
 }
 
-.nav_brand{
-  font-family: 'Poiret One', cursive;
+.navbar_brand {
+  font-family: "Poiret One", cursive;
   font-size: 18px;
 }
 
-.btn_group{
+.brand_icon {
+  margin-left: 5px;
+}
+
+.navbar_buttons {
   display: flex;
   align-self: stretch;
 }
 
-.nav_btn{
-  width: 100px;
-  transition: all .3s;
+.navbar_btn {
+  width: 80px;
+  transition: all 0.2s;
+  color: #333;
+  text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.nav_btn:hover{
+.navbar_btn:active {
   background: #3338;
   color: #eee;
 }
 
-.modal{
+/* modal styles */
+
+.modal {
   opacity: 1;
   position: absolute;
-  z-index: 1000000;
+  z-index: 100;
   margin: auto;
   min-height: 200px;
   min-width: 400px;
@@ -73,19 +87,21 @@ body{
   transition: all 2s;
 }
 
-.modal h2{
+.modal h2 {
   display: flex;
   justify-content: space-around;
   align-content: center;
-  font-weight: 300; 
+  font-weight: 300;
 }
 
-.modal i{
+.modal i {
   font-size: 2rem;
   margin-right: 20px;
 }
 
-.cb_container{
+/* main container styles */
+
+.container {
   height: 100vh;
   width: 100vw;
   padding-top: 45px;
@@ -95,24 +111,29 @@ body{
   overflow: hidden;
 }
 
-.color_block{
+/* styling for the colorblocks */
+/* organized 'top-down' */
+
+.colorBlock {
   flex: 1 1 30%;
-  transition: all .3s , color 0s;
+  transition: all 0.3s, color 0s;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-.color_block:hover{
+.colorBlock:hover {
   flex: 1 1 40%;
-  z-index: 100;
+  z-index: 10;
   box-shadow: 0 5px 20px #333;
 }
 
-.cb_head{
-  margin: 20px;
-  flex: 0 1 25%;
+/* block header */
+
+.colorBlock_head {
+  margin: 10px;
+  flex: 0 1 40%;
   align-self: flex-start;
   opacity: 1;
   display: flex;
@@ -120,30 +141,33 @@ body{
   align-items: flex-start;
   justify-content: space-around;
   z-index: 5;
-  transition: all .3s, color 0s;
+  transition: all 0.3s, color 0s;
 }
 
-.color_title{
+.head_title {
   margin: 5px;
   text-transform: uppercase;
   opacity: 0;
   transform-origin: left;
   transform: translateX(-20px) scaleX(0);
-  transition: transform .3s ease, opacity .3s linear, font-size .3s ease, color 0s;
+  transition: transform 0.3s ease, opacity 0.3s linear, font-size 0.3s ease,
+  color 0s;
 }
 
-.color_title:first-of-type{
+.head_title:first-of-type {
   transform: translateX(0px) scaleX(1);
   opacity: 1;
 }
 
-.color_block:hover .color_title{
+.colorBlock:hover .head_title {
   font-size: 12px;
   transform: translateX(0px) scaleX(1);
   opacity: 1;
 }
 
-.controls{
+/* control panel */
+
+.controls {
   max-width: 350px;
   flex: 0 1 30%;
   padding: 10px;
@@ -157,39 +181,39 @@ body{
   transform: translateX(300px);
   opacity: 0;
   z-index: 5;
-  transition: transform .3s ease, opacity .3s linear, color 0s;
+  transition: transform 0.3s ease, opacity 0.3s linear, color 0s;
 }
 
-.color_block:hover .controls{
+.colorBlock:hover .controls {
   opacity: 1;
   transform: translateX(0px);
 }
 
-#sliders{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.sliders_container {
+  display: none;
 }
 
-.slider{
-  padding: 10px 15px 10px 5px; 
+/* slider styling does not follow BEM practices */
+
+.slider {
+  padding: 10px 15px 10px 5px;
   flex: 1 1 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  transition: all .3s, color 0s;
+  transition: all 0.3s, color 0s;
 }
 
-.slider input[type=range]{
+.slider input[type="range"] {
   -webkit-appearance: none;
   background: transparent;
 }
 
-.slider input[type=range]:focus{
+.slider input[type="range"]:focus {
   outline: none;
 }
 
-.slider input[type=range]::-webkit-slider-thumb {
+.slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 1px solid #000000;
   height: 20px;
@@ -200,7 +224,7 @@ body{
   margin-top: -8px;
 }
 
-.slider input[type=range]::-webkit-slider-runnable-track {
+.slider input[type="range"]::-webkit-slider-runnable-track {
   max-width: 150px;
   height: 5px;
   cursor: pointer;
@@ -208,16 +232,15 @@ body{
   border: 1px solid #010101;
 }
 
-.btn_row{
-  margin-left: 10px;
+.row {
   display: flex;
   flex-direction: column;
-  align-items: stretch; 
+  align-items: stretch;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.btn {
+.colorBlock_btn {
   display: inline-block;
   text-align: center;
   border: 1px solid;
@@ -227,7 +250,7 @@ body{
   cursor: pointer;
 }
 
-.gradient_container{
+.gradientContainer {
   flex: 0 0 0%;
   height: 100%;
   align-self: stretch;
@@ -235,110 +258,113 @@ body{
   opacity: 0;
   flex-direction: column;
   align-items: stretch;
-  transition: all .5s ease, color 0s;
+  transition: all 0.5s ease, color 0s;
 }
 
-.gradient_container.open{
+.gradientContainer--open {
   opacity: 1;
   flex: 1 1 100%;
 }
 
-.gradient_container.open ~ .cb_head, .color_block:hover  .gradient_container.open + .cb_head .color_title, .gradient_container.open ~ .cb_head:hover{
+.gradientContainer--open ~ .colorBlock_head,
+.colorBlock:hover .gradientContainer--open + .colorBlock_head .head_title,
+.gradientContainer--open ~ .colorBlock_head:hover {
   opacity: 0;
   flex: 0 0 0%;
-  margin:0;
-  font-size: 0px !important;
+  margin: 0;
+  font-size: 0px;
 }
-.axial_gradient, .chroma_gradient, .tint_gradient{
+
+.gradient {
   flex: 1 1 30%;
   display: flex;
   flex-direction: row;
-  transition: all .3s, color 0s;
+  transition: all 0.3s, color 0s;
 }
 
-.gradient_container.open .axial_gradient:hover, .gradient_container.open .chroma_gradient:hover, .gradient_container.open .tint_gradient:hover{
+.gradientContainer--open .gradient:hover{
   flex: 1 1 50%;
 }
 
-.gradient_block{
+.gradient_block {
   flex: 0 0 0%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0px;
-  transition: all .3s, color 0s;
+  transition: all 0.3s, color 0s;
   color: transparent;
 }
 
-.gradient_container.open .gradient_block{
+.gradientContainer--open .gradient_block {
   flex: 1 1 10%;
   font-size: 0px;
 }
 
-.gradient_container.open .gradient_block:hover{
+.gradientContainer--open .gradient_block:hover {
   flex: 1 1 20%;
   color: #333;
   font-size: 12px;
 }
 
-@media only screen and (min-width: 900px){
-  .color_title:first-of-type{
+@media only screen and (min-width: 900px) {
+  .head_title:first-of-type {
     font-size: 16px;
   }
 }
 
-@media only screen and (min-width: 820px){
-  .btn {
+@media only screen and (min-width: 820px) {
+  .colorBlock_btn {
     padding: 10px;
   }
 }
 
-@media only screen and (min-width: 800px){
-  .cb_container{
+@media only screen and (min-width: 800px) {
+  .container {
     flex-direction: row;
   }
 
-  .color_block{
+  .colorBlock {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .cb_head{
+  .colorBlock_head {
     flex: 0 1 10%;
     align-items: center;
     align-self: center;
   }
 
-  .color_title{
+  .head_title {
     transform-origin: top;
     transform: translateY(-20px) scaleY(0);
   }
-  
-  .color_title:first-of-type{
+
+  .head_title:first-of-type {
     transform: translateY(0px) scaleY(1);
   }
-  
-  .color_block:hover .color_title{
+
+  .colorBlock:hover .head_title {
     font-size: 14px;
     transform: translateY(0px) scaleY(1);
   }
 
-  .gradient_container{
+  .gradientContainer {
     flex-direction: row;
   }
 
-  .axial_gradient, .chroma_gradient, .tint_gradient{
+  .gradient {
     flex-direction: column;
   }
 
-  .gradient_container.open .gradient_block{
+  .gradientContainer.open .gradient_block {
     color: #333;
     font-size: 12px;
   }
 
-  .controls{
+  .controls {
     width: 100%;
-    flex: 0 0 30%;
+    flex: 0 0 33%;
     padding: 30px;
     margin-top: auto;
     margin-left: 0;
@@ -348,20 +374,44 @@ body{
     transform: translateY(300px);
   }
 
-  .color_block:hover .controls{
+  .colorBlock:hover .controls {
     transform: translateY(0px);
   }
 
-  .slider{
-    padding: 5px 15px; 
+  .slider {
+    padding: 5px 15px;
   }
 
-  .btn_row{
-    margin-top: 10px;
-    flex-direction: row
+  .row {
+    margin-top: 20px;
+    flex-direction: row;
   }
 
-  .btn{
+  .colorBlock_btn {
     align-self: center;
+  }
+}
+
+@media only screen and (min-width: 540px) {
+  .colorBlock_head{
+    margin: 20px;
+  }
+  .sliders_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .navbar_btn{
+    width: 100px;
+  }
+
+  .navbar_btn:hover {
+    background: #3338;
+    color: #eee;
+  }
+
+  .row {
+    margin-left: 10px;
   }
 }

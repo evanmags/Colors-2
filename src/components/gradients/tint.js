@@ -16,7 +16,7 @@ class TintGradient extends Component {
   }
   render() {
     return (
-      <div className="tint_gradient">
+      <div className="tint gradient">
         <GradBlock
           l={true}
           light={this.state.light - 25}

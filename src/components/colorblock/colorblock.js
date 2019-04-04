@@ -121,7 +121,7 @@ class ColorBlock extends Component {
     return false;
   }
   show_gradient(){
-    document.getElementById(this.state.id).querySelector('.gradient_container').classList.toggle('open')
+    document.getElementById(this.state.id).querySelector('.gradientContainer').classList.toggle('gradientContainer--open')
   }
   handle_gradient_click(e){
     let color = e.target.style.background;
@@ -169,14 +169,14 @@ class ColorBlock extends Component {
     return (
       <div
         id={this.state.id}
-        className="color_block"
+        className="colorBlock"
         style={{ background: this.create_HSL(), color: this.set_color() }}
       >
       <GradientContainer state={this.state} onClick={this.handle_gradient_click}/>
-        <div className="cb_head">
-          <p className="color_title">{this.create_HSL()}</p>
-          <p className="color_title">{this.create_RGB()}</p>
-          <p className="color_title">{this.create_HEX()}</p>
+        <div className="colorBlock_head">
+          <p className="head_title">{this.create_HSL()}</p>
+          <p className="head_title">{this.create_RGB()}</p>
+          <p className="head_title">{this.create_HEX()}</p>
         </div>
         <div className="controls">
           <SliderGroup
@@ -187,7 +187,7 @@ class ColorBlock extends Component {
               this.handle_mouseup
             ]}
           />
-          <div className="btn_row">
+          <div className="row">
             <Btn id="lock" onClick={this.handle_lock}>
               {this.state.locked ? (
                 <span>

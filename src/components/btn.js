@@ -15,7 +15,7 @@ class Btn extends Component {
     return (
       <div
         id={this.state.id}
-        className="btn"
+        className="colorBlock_btn"
         onClick={this.props.onClick}
       >
         {this.props.children}

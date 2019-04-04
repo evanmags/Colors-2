@@ -16,7 +16,7 @@ class ChromaGradient extends Component {
   }
   render() {
     return (
-      <div className="chroma_gradient">
+      <div className="chroma gradient">
         <GradBlock
           s={true}
           sat={this.state.sat - 25}

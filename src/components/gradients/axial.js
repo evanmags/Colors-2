@@ -16,7 +16,7 @@ class AxialGradient extends Component {
   }
   render() {
     return (
-      <div className="axial_gradient">
+      <div className="axial gradient">
         <GradBlock
           h={true}
           hue={this.state.hue - 25}

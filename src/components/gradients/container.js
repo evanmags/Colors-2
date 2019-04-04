@@ -23,7 +23,7 @@ class GradientContainer extends Component{
   }
   render(){
     return(
-      <div className="gradient_container">
+      <div className="gradientContainer">
         <AxialGradient state={this.state}/>
         <ChromaGradient state={this.state}/>
         <TintGradient state={this.state}/>

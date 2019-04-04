@@ -40,7 +40,7 @@ class ColorBlockContainer extends Component {
     });
   }
   handle_click(e) {
-    if ( Array.from(document.querySelectorAll(".color_block")).includes(e.target) ) {
+    if ( Array.from(document.querySelectorAll(".colorBlock")).includes(e.target) ) {
       this.create_color();
     }
   }
@@ -49,7 +49,7 @@ class ColorBlockContainer extends Component {
   }
   render() {
     return (
-      <div className="cb_container" onClick={this.handle_click}>
+      <div className="container" onClick={this.handle_click}>
         <ColorBlock id="cb1" style={this.state.color1} />
         <ColorBlock id="cb2" style={this.state.color2} />
         <ColorBlock id="cb3" style={this.state.color3} />

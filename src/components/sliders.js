@@ -25,7 +25,7 @@ class Slider extends Component {
 class SliderGroup extends Component {
   render() {
     return (
-      <div id="sliders">
+      <div className="sliders_container">
         <Slider
           default={this.props.hue}
           handlers={this.props.handlers}
