@@ -8,8 +8,36 @@ class TintGradient extends Component {
       onClick: props.state.onClick,
       hue: props.state.hue,
       sat: props.state.sat,
-      light: props.state.light
+      light: props.state.light,
+      width: window.innerWidth
     };
+    this.generateblocks = this.generateblocks.bind(this);
+  }
+  generateblocks(width){
+    const blocks = []
+    if(width > 540){
+      for(let i = -25; i <= 25; i += 5){
+        blocks.push(<GradBlock
+          l={true}
+          light={this.state.light + i}
+          hue={this.state.hue}
+          sat={this.state.sat}
+          onClick={this.state.onClick}
+        />)
+      }
+    }
+    else {
+      for(let i = -15; i <= 15; i += 5){
+        blocks.push(<GradBlock
+          l={true}
+          light={this.state.light + i}
+          hue={this.state.hue}
+          sat={this.state.sat}
+          onClick={this.state.onClick}
+        />)
+      }
+    }
+    return blocks;
   }
   componentWillReceiveProps(props) {
     this.setState({ ...props.state });
@@ -17,83 +45,7 @@ class TintGradient extends Component {
   render() {
     return (
       <div className="tint gradient">
-        <GradBlock
-          l={true}
-          light={this.state.light - 25}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light - 20}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light - 15}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light - 10}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light - 5}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light + 5}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light + 10}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light + 15}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light + 20}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
-        <GradBlock
-          l={true}
-          light={this.state.light + 25}
-          hue={this.state.hue}
-          sat={this.state.sat}
-          onClick={this.state.onClick}
-        />
+        {this.generateblocks(this.state.width)}
       </div>
     );
   }
