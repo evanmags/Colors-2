@@ -20,19 +20,40 @@ body {
   overflow: hidden;
 }
 
+.navbar,
+.navbar_buttons,
+.navbar_btn,
+.modal h2,
+.colorBlock,
+.gradient,
+.gradient_block,
+.controls,
+.slider {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal,
+.container,
+.colorBlock_head,
+.gradientContainer,
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Navbar styles */
 
 .navbar {
   position: fixed;
-  z-index: 100;
   width: 100vw;
   height: 45px;
   padding: 0 5vw;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   background: #f8f8f8;
   box-shadow: 0 1px 3px;
+  z-index: 100;
 }
 
 .navbar_brand {
@@ -45,18 +66,16 @@ body {
 }
 
 .navbar_buttons {
-  display: flex;
   align-self: stretch;
 }
 
 .navbar_btn {
   width: 80px;
-  transition: all 0.2s;
-  color: #333;
-  text-decoration: none;
-  display: flex;
   justify-content: center;
   align-items: center;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s;
 }
 
 .navbar_btn:active {
@@ -67,16 +86,13 @@ body {
 /* modal styles */
 
 .modal {
-  opacity: 1;
   position: absolute;
-  z-index: 100;
-  margin: auto;
   min-height: 200px;
   min-width: 400px;
-  left: 50vw;
-  top: 30vh;
+  margin: auto;
   padding: 50px;
-  flex-direction: column;
+  top: 30vh;
+  left: 50vw;
   justify-content: space-around;
   align-items: stretch;
   color: #f1f1f1;
@@ -84,19 +100,20 @@ body {
   border-radius: 10px;
   box-shadow: 2px 2px 50px #444d;
   transform: translateX(-50%);
+  opacity: 1;
   transition: all 2s;
+  z-index: 100;
 }
 
 .modal h2 {
-  display: flex;
   justify-content: space-around;
   align-content: center;
   font-weight: 300;
 }
 
 .modal i {
-  font-size: 2rem;
   margin-right: 20px;
+  font-size: 2rem;
 }
 
 /* main container styles */
@@ -105,8 +122,6 @@ body {
   height: 100vh;
   width: 100vw;
   padding-top: 45px;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   overflow: hidden;
 }
@@ -115,41 +130,38 @@ body {
 /* organized 'top-down' */
 
 .colorBlock {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex: 1 1 30%;
   transition: all 0.3s, color 0s;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
 }
 
 .colorBlock:hover {
   flex: 1 1 40%;
-  z-index: 10;
   box-shadow: 0 5px 20px #333;
+  z-index: 10;
 }
 
 /* block header */
 
 .colorBlock_head {
   margin: 10px;
+  align-items: flex-start;
+  justify-content: space-around;
   flex: 0 1 40%;
   align-self: flex-start;
   opacity: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
   z-index: 5;
   transition: all 0.3s, color 0s;
 }
 
 .head_title {
   margin: 5px;
-  text-transform: uppercase;
   opacity: 0;
-  transform-origin: left;
+  text-transform: uppercase;
   transform: translateX(-20px) scaleX(0);
+  transform-origin: left;
   transition: transform 0.3s ease, opacity 0.3s linear, font-size 0.3s ease,
   color 0s;
 }
@@ -165,23 +177,73 @@ body {
   opacity: 1;
 }
 
+.gradientContainer {
+  height: 100%;
+  align-items: stretch;
+  align-self: stretch;
+  flex: 0 0 0%;
+  opacity: 0;
+  transition: all 0.5s ease, color 0s;
+}
+
+.gradientContainer--open {
+  flex: 1 1 100%;
+  opacity: 1;
+}
+
+.gradientContainer--open ~ .colorBlock_head,
+.colorBlock:hover .gradientContainer--open + .colorBlock_head .head_title,
+.gradientContainer--open ~ .colorBlock_head:hover {
+  margin: 0;
+  flex: 0 0 0%;
+  font-size: 0px;
+  opacity: 0;
+}
+
+.gradient {
+  flex-direction: row;
+  flex: 1 1 30%;
+  transition: all 0.3s, color 0s;
+}
+
+.gradientContainer--open .gradient:hover{
+  flex: 1 1 50%;
+}
+
+.gradient_block {
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 0%;
+  color: transparent;
+  font-size: 0px;
+  transition: all 0.3s, color 0s;
+}
+
+.gradientContainer--open .gradient_block {
+  flex: 1 1 10%;
+  font-size: 0px;
+}
+
+.gradientContainer--open .gradient_block:hover {
+  flex: 1 1 20%;
+  color: #333;
+  font-size: 12px;
+}
+
 /* control panel */
 
 .controls {
   max-width: 350px;
-  flex: 0 1 30%;
-  padding: 10px;
   margin-top: 0;
   margin-left: auto;
-  display: flex;
-  flex-direction: row;
+  padding: 10px;
   align-items: stretch;
   justify-content: center;
   align-self: stretch;
-  transform: translateX(300px);
-  opacity: 0;
-  z-index: 5;
+  flex: 0 1 30%;
+  opacity: 1;
   transition: transform 0.3s ease, opacity 0.3s linear, color 0s;
+  z-index: 5;
 }
 
 .colorBlock:hover .controls {
@@ -197,10 +259,9 @@ body {
 
 .slider {
   padding: 10px 15px 10px 5px;
-  flex: 1 1 100%;
-  display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex: 1 1 100%;
   transition: all 0.3s, color 0s;
 }
 
@@ -215,13 +276,13 @@ body {
 
 .slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  border: 1px solid #000000;
   height: 20px;
   width: 10px;
+  margin-top: -8px;
+  border: 1px solid #000000;
   border-radius: 3px;
   background: #ffffff;
   cursor: pointer;
-  margin-top: -8px;
 }
 
 .slider input[type="range"]::-webkit-slider-runnable-track {
@@ -233,78 +294,19 @@ body {
 }
 
 .row {
-  display: flex;
-  flex-direction: column;
   align-items: stretch;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
 .colorBlock_btn {
+  padding: 5px;
   display: inline-block;
   text-align: center;
   border: 1px solid;
-  padding: 5px;
   border-radius: 5px;
   word-wrap: none;
   cursor: pointer;
-}
-
-.gradientContainer {
-  flex: 0 0 0%;
-  height: 100%;
-  align-self: stretch;
-  display: flex;
-  opacity: 0;
-  flex-direction: column;
-  align-items: stretch;
-  transition: all 0.5s ease, color 0s;
-}
-
-.gradientContainer--open {
-  opacity: 1;
-  flex: 1 1 100%;
-}
-
-.gradientContainer--open ~ .colorBlock_head,
-.colorBlock:hover .gradientContainer--open + .colorBlock_head .head_title,
-.gradientContainer--open ~ .colorBlock_head:hover {
-  opacity: 0;
-  flex: 0 0 0%;
-  margin: 0;
-  font-size: 0px;
-}
-
-.gradient {
-  flex: 1 1 30%;
-  display: flex;
-  flex-direction: row;
-  transition: all 0.3s, color 0s;
-}
-
-.gradientContainer--open .gradient:hover{
-  flex: 1 1 50%;
-}
-
-.gradient_block {
-  flex: 0 0 0%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0px;
-  transition: all 0.3s, color 0s;
-  color: transparent;
-}
-
-.gradientContainer--open .gradient_block {
-  flex: 1 1 10%;
-  font-size: 0px;
-}
-
-.gradientContainer--open .gradient_block:hover {
-  flex: 1 1 20%;
-  color: #333;
-  font-size: 12px;
 }
 
 @media only screen and (min-width: 900px) {
@@ -364,13 +366,13 @@ body {
 
   .controls {
     width: 100%;
-    flex: 0 0 33%;
     padding: 30px;
     margin-top: auto;
     margin-left: 0;
     flex-direction: column;
     justify-content: space-around;
     align-self: center;
+    flex: 0 0 33%;
     transform: translateY(300px);
   }
 
@@ -393,15 +395,6 @@ body {
 }
 
 @media only screen and (min-width: 540px) {
-  .colorBlock_head{
-    margin: 20px;
-  }
-  .sliders_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
   .navbar_btn{
     width: 100px;
   }
@@ -409,6 +402,21 @@ body {
   .navbar_btn:hover {
     background: #3338;
     color: #eee;
+  }
+  
+  .colorBlock_head{
+    margin: 20px;
+  }
+
+  .controls {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+
+  .sliders_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   .row {
